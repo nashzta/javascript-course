@@ -220,3 +220,79 @@
 // }
 
 // if (favourite !== 23) console.log("Why not 23?");
+
+//* Logical Operators
+
+// const hasDriversLicense = true;
+// const hasGoodVision = false;
+
+// console.log(hasDriversLicense && hasGoodVision);
+// console.log(hasDriversLicense || hasGoodVision);
+// console.log(!hasDriversLicense, !hasGoodVision);
+
+// if (hasDriversLicense && hasGoodVision) {
+//   console.log("Sarah is able to drive!");
+// } else {
+//   console.log("Someone else should drive...");
+// }
+
+// const isTired = true;
+
+// console.log(hasDriversLicense && hasGoodVision && !isTired);
+// if (hasDriversLicense && hasGoodVision && isTired) {
+//   console.log("Sarah is able to drive!");
+// } else {
+//   console.log("Someone else should drive...");
+// }
+
+//* The Switch Statement
+
+// const day = "monday";
+
+// switch (day) {
+//   case "monday":
+//     console.log("Plan course structure");
+//     console.log("Go to coding meetup");
+//     break;
+//   case "tuesday":
+//     console.log("Preparay theory videos");
+//     break;
+//   case "wednesday":
+//   case "thursday":
+//     console.log("Write code examples");
+//   case "friday":
+//     console.log("Record videos");
+//   case "saturday":
+//   case "sunday":
+//     console.log("Enjoy the weekend :D");
+//   default:
+//     console.log("Not a valid day!");
+//     break;
+// }
+
+//* Statements and Expressions
+
+// // Expressions
+// 3 + 4;
+// 1991;
+// true && false && !false;
+
+// // Statements
+
+// if (23 < 10) {
+//   const str = "23 is a bigger";
+// }
+
+// console.log(`I'm ${2037 - 1991} years old`);
+
+//* Ternary Operator
+
+// const age = 23;
+// age >= 18
+//   ? console.log(`I like to drink wine 🍷`)
+//   : console.log(`I like to drink water 💧`);
+
+// const drink = age >= 18 ? `Wine 🍷` : `Water 💧`;
+// console.log(drink);
+
+// console.log(`I like to drink ${age >= 18 ? `wine 🍷` : `water 💧`}`);
