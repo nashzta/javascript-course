@@ -52,6 +52,74 @@ Create an array called tips containing the tip value for each bill, calculated f
 
 BONUS: Create an array totals containing the total values, so the bill + tip. */
 
-function calcTip(bill) {
-  return bill >= 50 && bill <= 300 ? bill * 0.2 : bill * 0.15;
+//*- Solution Jean - Jonas
+
+// const bills = [125, 555, 44];
+
+// function calcTip(bill) {
+//   const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+//   return tip;
+// }
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+// const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+// console.log(tips);
+// console.log(totals);
+
+//* Challenge 3
+
+/* Let's go back to Mark and John comparing their BMIs!
+
+This time, let's use objects to implement the calculations! Remember: BMI = mass / (height * height) (mass in kg and height in meters).
+
+Your tasks:
+
+For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith). Name these objects as mark and john, and their properties exactly as fullName, mass and height.
+
+Create a calcBMI method on each object to calculate the BMI (the same method on both objects). Assign the BMI value to a property, and also return it from the method.
+
+Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!".
+
+TEST DATA: Marks weighs 78 kg and is 1.69 m tall. John weighs 92 kg and is 1.95 m tall.
+
+👋 OPTIONAL: You can watch my solution in video format in the next lecture
+
+IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2). */
+
+//*-  Solution Jean - Jonas
+
+/* const mark = {
+  fullName: 'Mark Miller',
+  mass: 78.0,
+  height: 1.69,
+
+  calcBMI() {
+    this.bmi = this.mass / (this.height * this.height);
+    return this.bmi;
+  },
+};
+
+const john = {
+  fullName: 'John Smith',
+  mass: 92,
+  height: 1.95,
+
+  calcBMI() {
+    this.bmi = this.mass / (this.height * this.height);
+    return this.bmi;
+  },
+};
+
+mark.calcBMI();
+john.calcBMI();
+
+if (mark.bmi > john.bmi) {
+  console.log(
+    `Mark Miller's BMI (${mark.bmi}) is higher than John Smith's (${john.bmi})!`
+  );
+} else {
+  console.log(
+    `John Smith's BMI (${john.bmi}) is higher than Mark Miller's (${mark.bmi})!`
+  );
 }
+ */

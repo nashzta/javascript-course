@@ -176,3 +176,96 @@
 // if(friends.includes("Steven")) {
 //     console.log("you have")
 // }
+
+//* Introduction to Objects
+
+// // arr
+// const jeanArray = [
+//   'Jean',
+//   'Huaman',
+//   2023 - 2000,
+//   'stevedore',
+//   ['Priscila', 'Boris', 'Jack'],
+// ];
+
+// // object
+// const jean = {
+//   firstName: 'Jean',
+//   lastName: 'Huaman',
+//   age: 2023 - 2000,
+//   job: 'stevedore',
+//   friends: ['Priscila', 'Boris', 'Jack'],
+// };
+
+//* Dot vs Bracket Notation
+
+// const jean = {
+//   firstName: 'Jean',
+//   lastName: 'Huaman',
+//   age: 2023 - 2000,
+//   job: 'stevedore',
+//   friends: ['Priscila', 'Boris', 'Jack'],
+// };
+
+// console.log(jean);
+
+// console.log(jean.lastName);
+// console.log(jean['lastName']);
+
+// const nameKey = 'Name';
+// console.log(jean['last' + nameKey]);
+// console.log(jean['first' + nameKey]);
+
+// const interestedIn = prompt(
+//   'What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends?'
+// );
+
+// if (jean[interestedIn]) {
+//   console.log(jean[interestedIn]);
+// } else {
+//   console.log(
+//     'Wrong request! Choose between firstName, lastName, age, job, and friends'
+//   );
+// }
+
+// jean.location = 'Peru';
+// jean['twitter'] = '@jeanpipoxi';
+// console.log(jean);
+
+// // Challenge
+// // "Jean has 3 friends, and his best friend is called Priscila"
+
+// console.log(
+//   `${jean.firstName} has ${jean.friends.length} friends, and hist best friend is called ${jean.friends[0]}`
+// );
+
+//* Objects Methods
+
+// const jean = {
+//   firstName: 'Jean',
+//   lastName: 'Huaman',
+//   birthYear: 2000,
+//   job: 'stevedore',
+//   friends: ['Priscila', 'Boris', 'Jack'],
+//   hasDriversLicense: false,
+
+//   //   calcAge: function () {
+//   //     return 2023 - this.birthYear;
+//   //   },
+
+//   calcAge: function () {
+//     this.age = 2023 - this.birthYear;
+//     return this.age;
+//   },
+
+//   getSummary() {
+//     return `${this.firstName} is a ${this.age}-year old stevedore, and he${
+//       this.hasDriversLicense ? '' : ' not'
+//     } has a driver's lincese`;
+//   },
+// };
+
+// // Challenge
+// // "Jean is a 23-year old stevedore, and he has a driver's lincese"
+
+// console.log(jean.getSummary());
