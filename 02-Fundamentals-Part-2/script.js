@@ -269,3 +269,108 @@
 // // "Jean is a 23-year old stevedore, and he has a driver's lincese"
 
 // console.log(jean.getSummary());
+
+//* Iterator: The For Loop
+
+// // console.log('Lifting weights repetition 1 🏋️');
+// // console.log('Lifting weights repetition 2 🏋️');
+// // console.log('Lifting weights repetition 3 🏋️');
+// // console.log('Lifting weights repetition 4 🏋️');
+// // console.log('Lifting weights repetition 5 🏋️');
+// // console.log('Lifting weights repetition 6 🏋️');
+// // console.log('Lifting weights repetition 7 🏋️');
+// // console.log('Lifting weights repetition 8 🏋️');
+// // console.log('Lifting weights repetition 9 🏋️');
+// // console.log('Lifting weights repetition 10 🏋️');
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep} 🏋️`);
+// }
+
+//* Looping Arrays, Breaking and Continuing
+
+// const jeanArray = [
+//   'Jean',
+//   'Huaman',
+//   2023 - 2000,
+//   'stevedore',
+//   ['Priscila', 'Boris', 'Jack'],
+//   true,
+// ];
+
+// const types = [];
+
+// for (let i = 0; i < jeanArray.length; i++) {
+//   console.log(jeanArray[i], typeof jeanArray[i]);
+
+//   types.push(typeof jeanArray[i]);
+// }
+
+// console.log(types);
+
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//   ages.push(2023 - years[i]);
+// }
+
+// console.log(ages);
+
+// // continue and breaking
+// console.log('------ ONLY STRINGS ------');
+// for (let i = 0; i < jeanArray.length; i++) {
+//   if (typeof jeanArray[i] !== 'string') continue;
+
+//   console.log(jeanArray[i], typeof jeanArray[i]);
+// }
+
+// console.log('------ BREAKING WITH NUMBERS ------');
+// for (let i = 0; i < jeanArray.length; i++) {
+//   if (typeof jeanArray[i] !== 'number') break;
+
+//   console.log(jeanArray[i], typeof jeanArray[i]);
+// }
+
+//*  Looping Backwards and Loops in Loops
+
+// const jean = [
+//   'Jean',
+//   'Huaman',
+//   2023 - 2000,
+//   'stevedore',
+//   ['Priscila', 'Boris', 'Jack'],
+//   true,
+// ];
+
+// for (let i = jean.length - 1; i >= 0; i--) {
+//   console.log(i, jean[i]);
+// }
+
+// for (let exercise = 0; exercise < 4; exercise++) {
+//   console.log(`---- Starting exercise ${exercise} ----`);
+
+//   for (let rep = 0; rep < 6; rep++) {
+//     console.log(`Lifting weight repetition ${rep} 🏋️`);
+//   }
+// }
+
+//* The While Loop
+
+// for (let rep = 0; rep < 6; rep++) {
+//   console.log(`Lifting weight repetition ${rep} 🏋️`);
+// }
+
+// let rep = 1;
+
+// while (rep <= 10) {
+//   console.log(`WHILE: Lifting weight repetition ${rep} 🏋️`);
+//   rep++;
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+// }
