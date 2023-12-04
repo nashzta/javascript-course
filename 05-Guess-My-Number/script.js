@@ -73,4 +73,3 @@ function resetGame() {
 
 document.querySelector('.again').addEventListener('click', resetGame);
 
-// Coding Challenge #1
