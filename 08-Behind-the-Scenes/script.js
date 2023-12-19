@@ -36,39 +36,130 @@
 //* Hoisting in Practice
 
 /* variables */
-var me = 'Jean';
-let job = 'stevedore';
-const year = 2000;
+// var me = 'Jean';
+// let job = 'stevedore';
+// const year = 2000;
 
-/* functions */
-console.log(addDecl(2, 3));
-console.log(addExpr(2, 3));
-console.log(addArrow(3, 4));
+// /* functions */
+// console.log(addDecl(2, 3));
+// console.log(addExpr(2, 3));
+// console.log(addArrow(3, 4));
 
-function addDecl(a, b) {
-  return a + b;
-}
+// function addDecl(a, b) {
+//   return a + b;
+// }
 
-const addExpr = function (a, b) {
+// const addExpr = function (a, b) {
+//   return a + b;
+// };
+
+// const addArrow = (a, b) => a + b;
+
+// // Example
+
+// if (!numProducts) deleteShoppingCart();
+
+// var numProducts = 10;
+
+// function deleteShoppingCart() {
+//   console.log('All products deleted!');
+// }
+
+// var x = 1;
+// let y = 2;
+// const z = 3;
+
+// console.log(x === window.x);
+// console.log(y === window.y);
+// console.log(z === window.z);
+
+// console.log('Hola me llamo Jean Pierre');
+
+//* The This Keyword
+
+//* The This Keyword in Practice
+
+// console.log(this);
+
+// const calcAge = function (birthYear) {
+//   console.log(2023 - birthYear);
+//   console.log(this);
+// };
+
+// calcAge(2000);
+
+// const calcAgeArrow = birthYear => {
+//   console.log(2023 - birthYear);
+//   console.log(this);
+// };
+
+// calcAgeArrow(2000);
+
+// const jean = {
+//   year: 2000,
+//   calcAge: function () {
+//     console.log(2023 - this.year);
+//     console.log(this);
+//   },
+//   calcAgeArr: () => {
+//     console.log(this);
+//   },
+// };
+
+// jean.calcAge();
+
+// jean.calcAgeArr();
+
+// const priscila = {
+//   year: 2020,
+// };
+
+// priscila.calcAge = jean.calcAge;
+
+// priscila.calcAge();
+
+//* Regular functions vs Arrow Functions
+
+/* const jean = {
+  firstName: 'Jean',
+  year: 2000,
+  calcAge: function () {
+    console.log(2023 - this.year);
+    console.log(this);
+
+    // Solution 1
+    // const self = this;
+    // const isMillenial = function () {
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    // };
+
+    // Solution 2
+    const isMillenial = () => {
+      console.log(this);
+      console.log(self.year >= 1981 && self.year <= 1996);
+    };
+    isMillenial();
+  },
+
+  greet: () => console.log(`Hey ${this.firstName}`),
+};
+
+jean.calcAge();
+
+// arguments keyword
+
+const addExp = function (a, b) {
+  console.log(arguments);
   return a + b;
 };
 
-const addArrow = (a, b) => a + b;
+addExp(2, 3);
+addExp(1, 3, 9);
 
-// Example
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
 
-if (!numProducts) deleteShoppingCart();
-
-var numProducts = 10;
-
-function deleteShoppingCart() {
-  console.log('All products deleted!');
-}
-
-var x = 1;
-let y = 2;
-const z = 3;
-
-console.log(x === window.x);
-console.log(y === window.y);
-console.log(z === window.z);
+addArrow(2, 4);
+ */
