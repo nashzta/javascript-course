@@ -47,9 +47,55 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 //* REST PATTERN AND PARAMETERS
+
+//*- Destructuring
+// spread -> because on RIGHT side of = operator
+const arr = [1, 2, ...[3, 4]];
+
+// rest -> because on LEFT side of = operator
+// Rest captura los demás elementos que no son tomados en el destructuring
+
+// rest:           ↓
+const [a, b, ...others] = [1, 2, 3, 4, 5, 6];
+console.log(others);
+
+const [pizza, , rissoto, ...othersMenus] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+console.log(pizza, rissoto, othersMenus);
+
+// Rest Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+//*- Functions
+
+const add = function (...numbers) {
+  let sum = 0;
+  for (const number of numbers) {
+    sum += number;
+  }
+  return sum;
+};
+console.log(add(2, 3, 4));
+console.log(add(5, 3, 7, 2));
+console.log(add(6, 5, 8, 34, 1, 7, 3, 9));
+
+const x = [23, 5, 7];
+console.log(add(...x));
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
 
 //* THE SPREAD OPERATOR
 // Concepto: Desempaqueta todos los elementos.
