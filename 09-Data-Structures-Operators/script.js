@@ -54,48 +54,89 @@ const restaurant = {
   },
 };
 
+//* THE NULLISH COALESCING OPERATOR (??)
+// Only false is null and undefined (NOT 0 or "")
+restaurant.numGuests = false;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
+
+//* SHORT CIRCUITING (&& AND ||)
+
+// //*-  OR OPERATOR (||) retorna el primer valor verdadero.
+// console.log(3 || 'Jean');
+// console.log('' || 'Jean');
+// console.log(true || 0);
+// console.log(undefined || null);
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// // Ternary operator
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// // Short circuiting - OR
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// //*- AND OPERATOR (&&) retorna el ultimo valor si todos son verdadero y sino retorna el primer valor falso.
+
+// console.log('------ AND ------');
+// console.log(0 && 'Jean');
+// console.log(7 && 'Jean');
+// console.log('Hello' && 23 && null && 'Jonas');
+
+// // If statements
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+// // AND Operator
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
 //* REST PATTERN AND PARAMETERS
 
-//*- Destructuring
-// spread -> because on RIGHT side of = operator
-const arr = [1, 2, ...[3, 4]];
+// //*- Destructuring
+// // spread -> because on RIGHT side of = operator
+// const arr = [1, 2, ...[3, 4]];
 
-// rest -> because on LEFT side of = operator
-// Rest captura los demás elementos que no son tomados en el destructuring
+// // rest -> because on LEFT side of = operator
+// // Rest captura los demás elementos que no son tomados en el destructuring
 
-// rest:           ↓
-const [a, b, ...others] = [1, 2, 3, 4, 5, 6];
-console.log(others);
+// // rest:           ↓
+// const [a, b, ...others] = [1, 2, 3, 4, 5, 6];
+// console.log(others);
 
-const [pizza, , rissoto, ...othersMenus] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
+// const [pizza, , rissoto, ...othersMenus] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
 
-console.log(pizza, rissoto, othersMenus);
+// console.log(pizza, rissoto, othersMenus);
 
-// Rest Objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// // Rest Objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
 
-//*- Functions
+// //*- Functions
 
-const add = function (...numbers) {
-  let sum = 0;
-  for (const number of numbers) {
-    sum += number;
-  }
-  return sum;
-};
-console.log(add(2, 3, 4));
-console.log(add(5, 3, 7, 2));
-console.log(add(6, 5, 8, 34, 1, 7, 3, 9));
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (const number of numbers) {
+//     sum += number;
+//   }
+//   return sum;
+// };
+// console.log(add(2, 3, 4));
+// console.log(add(5, 3, 7, 2));
+// console.log(add(6, 5, 8, 34, 1, 7, 3, 9));
 
-const x = [23, 5, 7];
-console.log(add(...x));
+// const x = [23, 5, 7];
+// console.log(add(...x));
 
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms');
 
 //* THE SPREAD OPERATOR
 // Concepto: Desempaqueta todos los elementos.
