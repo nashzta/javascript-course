@@ -5,6 +5,24 @@ const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 // Data needed for first part of the section
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// Naming a property with expresions - enhanced objects literals
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -12,22 +30,14 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  // old
+  // openingHours: openingHours,
 
-  order: function (starterIndex, mainIndex) {
+  // ES6 enhanced object literals
+  openingHours,
+
+  // Enhanced methods of object literals
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
@@ -54,14 +64,61 @@ const restaurant = {
   },
 };
 
+//* Enhanced object literals
+
+//* Looping Arrays: The for-of loop
+
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// // without index
+// for (const item of menu) console.log(item);
+
+// // with index - entries method
+// for (const [index, item] of menu.entries()) console.log(index, item);
+
+//* Logical Assignment Operators
+
+// const rest1 = {
+//   name: 'Capri',
+//   // numGuests: 20,
+//   numGuests: 0,
+// };
+
+// const rest2 = {
+//   name: 'La piazza',
+//   owner: 'Giovanni Rossi',
+// };
+
+// // OR assignment operator
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+
+// // rest1.numGuests ||= 10;
+// // rest2.numGuests ||= 10;
+
+// // Nullish coalescing operator
+
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+
+// // AND assignment operator
+// // rest1.owner = rest1.owner && '<ANONYMUS>';
+// // rest2.owner = rest2.owner && '<ANONYMUS>';
+
+// rest1.owner &&= '<ANONYMUS>';
+// rest2.owner &&= '<ANONYMUS>';
+
+// console.log(rest1);
+// console.log(rest2);
+
 //* THE NULLISH COALESCING OPERATOR (??)
 // Only false is null and undefined (NOT 0 or "")
-restaurant.numGuests = false;
-const guests = restaurant.numGuests || 10;
-console.log(guests);
+// restaurant.numGuests = false;
+// const guests = restaurant.numGuests || 10;
+// console.log(guests);
 
-const guestsCorrect = restaurant.numGuests ?? 10;
-console.log(guestsCorrect);
+// const guestsCorrect = restaurant.numGuests ?? 10;
+// console.log(guestsCorrect);
 
 //* SHORT CIRCUITING (&& AND ||)
 
