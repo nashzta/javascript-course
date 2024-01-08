@@ -101,8 +101,6 @@ GOOD LUCK � */
 // team2 < team1 && team2 < draw && console.log(team2);
 // draw < team1 && draw < team2 && console.log(draw);
 
-//* CHALLENGE 1
-
 /* Coding Challenge #2
 Let's continue with our football betting app! Keep using the 'game' variable from 
 before.
@@ -128,31 +126,83 @@ game, it will look like this:
 }
 GOOD LUCK � */
 
-// 1.
-for (const [i, namePlayer] of game.scored.entries()) {
-  console.log(`Goal ${i + 1}: ${namePlayer}`);
-}
+// // 1.
+// for (const [i, namePlayer] of game.scored.entries()) {
+//   console.log(`Goal ${i + 1}: ${namePlayer}`);
+// }
 
-// 2.
-let totalOdds = 0;
-const odds = Object.values(game.odds);
-for (const odd of odds) {
-  totalOdds += odd;
-}
-console.log(totalOdds / odds.length);
+// // 2.
+// let totalOdds = 0;
+// const odds = Object.values(game.odds);
+// for (const odd of odds) {
+//   totalOdds += odd;
+// }
+// console.log(totalOdds / odds.length);
 
-// 3.
-for (const [team, odd] of Object.entries(game.odds)) {
-  console.log(
-    `Odd of ${team !== 'x' ? `victory ${game[team]}` : 'draw'}: ${odd}`
-  );
-}
+// // 3.
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   console.log(
+//     `Odd of ${team !== 'x' ? `victory ${game[team]}` : 'draw'}: ${odd}`
+//   );
+// }
 
-// 4.
-const scorers = {};
-for (const playerScore of game.scored) {
-  scorers[playerScore] && scorers[playerScore]++;
-  scorers[playerScore] = scorers[playerScore] ?? 1;
-}
+// // 4.
+// const scorers = {};
+// for (const playerScore of game.scored) {
+//   scorers[playerScore] && scorers[playerScore]++;
+//   scorers[playerScore] = scorers[playerScore] ?? 1;
+// }
 
-console.log(scorers);
+// console.log(scorers);
+
+//* CHALLENGE 3
+
+/* Let's continue with our football betting app! This time, we have a map called 
+'gameEvents' (see below) with a log of the events that happened during the 
+game. The values are the events themselves, and the keys are the minutes in which 
+each event happened (a football game has 90 minutes plus some extra time).
+Your tasks:
+1. Create an array 'events' of the different game events that happened (no 
+duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 
+was unfair. So remove this event from the game events log.
+3. Compute and log the following string to the console: "An event happened, on 
+average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over 'gameEvents' and log each element to the console, marking 
+whether it's in the first half or second half (after 45 min) of the game, like this:
+[FIRST HALF] 17: ⚽ GOAL
+GOOD LUCK � */
+
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '� Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '� Substitution'],
+  [64, '� Yellow card'],
+  [69, '� Red card'],
+  [70, '� Substitution'],
+  [72, '� Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '� Yellow card'],
+]);
+
+//1
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+//2
+gameEvents.delete(64);
+console.log(gameEvents);
+
+//3
+const time = [...gameEvents.keys()].pop();
+console.log(
+  `An event happened, on average, every ${time / gameEvents.size} minutes`
+);
+
+//4
+for (const [minute, event] of gameEvents) {
+  const half = minute <= 45 ? '[PRIMER' : '[SEGUNDO';
+  console.log(`${half} TIEMPO] ${minute}: ${event}`);
+}
