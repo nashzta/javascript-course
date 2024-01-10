@@ -64,6 +64,175 @@ const restaurant = {
   },
 };
 
+//* WORKING WITH STRINGS - Part 3
+
+// Split -> divide una cadena segun el caracter que le pases y retorna un array
+console.log('a+very+nice+string'.split('+'));
+console.log('Jean Pierre'.split(' '));
+
+const [firstName, lastName] = 'Jean Pierre'.split(' ');
+
+// Join -> concatena arrays o strings.
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  for (const n of names) {
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davis');
+capitalizeName('jean pierre huaman');
+
+// Padding -> Añade caracteres segun la longitud aplicada
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('Jean'.padStart(20, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(433342342341421));
+console.log(maskCreditCard('123124325345654435435435546345'));
+
+// Repeat
+
+const message2 = 'Bad waether... All Departues Delayed...';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'🛩'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+
+//* WORKING WITH STRINGS - Part 2
+
+// const airline = 'TAP Air Portugal';
+
+// // Todo mayusculas
+// console.log(airline.toLowerCase());
+// // Todo minusculas
+// console.log('jonas'.toUpperCase());
+
+// // Fix capitalization in name
+
+// const passenger = 'jEaN piErrE';
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// // Comparing emails
+
+// const email = 'hello@jean.com';
+// const loginEmail = '        Hello@Jean.CoM \n';
+// // const lowerEmail = loginEmail.toLowerCase();
+
+// // Eliminate spaces --> trim
+// // const trimmedEmail = lowerEmail.trim();
+// // console.log(trimmedEmail);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+
+// //replacing
+
+// const priceGB = '288,97$';
+// const priceUS = priceGB.replace(',', '.').replace('$', '').padStart(9, 'S/.');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23!';
+
+// console.log(announcement.replaceAll('door', 'gate'));
+
+// // Booleans
+
+// const plane = 'Airbus A320neo';
+
+// // If includes in the string
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+
+// // If start with...
+// console.log(plane.startsWith('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
+
+// // Practice exercise
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT allowed on board');
+//   } else {
+//     console.log('Welcome aboard!');
+//   }
+// };
+
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+//* WORKING WITH STRINGS - Part 1
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// //IndexOf
+// // Encontrar el indice donde se encuentra el caracter, funciona tambien con arrays
+// console.log(airline.indexOf('r'));
+// // Encontrar el ultimo indice donde se encuentra el caracter, funciona tambien con arrays
+// console.log(airline.lastIndexOf('r'));
+// // Indexof es case sensitive
+// console.log(airline.indexOf('portugal')); // -1
+
+// //Slice -> Extrae carácteres desde un indice a otro indice.
+// console.log(airline.slice(4));
+
+// console.log(airline.slice(4, 7));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// // Start counting from the end
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle sets
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') console.log('You got the middle seat 😁');
+//   else console.log('You got lucky 😎');
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// console.log(new String('jonas'));
+// console.log(typeof new String('jonas'));
+// console.log(typeof new String('jonas'));
+// console.log(typeof new String('jonas').slice(1));
+
 //* MAPS ITERATION
 
 // const question = new Map([
