@@ -61,6 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Display Movements
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
 
@@ -79,6 +80,29 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+// Create Users
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(word => word[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
+
+//* Calculate the balance
+
+function calcDisplayBalance(movements) {
+  const balance = movements.reduce((acc, cur) => acc + cur, 0);
+  labelBalance.textContent = `${balance}€`;
+}
+
+calcDisplayBalance(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -140,7 +164,7 @@ displayMovements(account1.movements);
 // console.log(arr.slice(-1)[0]);
 // console.log(arr.at(-1));
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const [i, movement] of movements.entries()) {
 //   if (movement > 0) {
@@ -179,3 +203,75 @@ displayMovements(account1.movements);
 // currenciesUnique.forEach(function (value, key, set) {
 //   console.log(`${key}: ${value}`);
 // });
+
+//* Method MAP in practice
+
+// const eurToUsd = 1.1;
+
+// // const movementsUSD = movements.map(function (mov) {
+// //   return mov * eurToUsd;
+// // });
+
+// const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// const movementsUSDfor = [];
+// for (const mov of movements) movementsUSDfor.push(mov * 1.1);
+
+// const movementsDescriptions = movements.map((mov, i, arr) => {
+//   return `Movement ${i + 1}: You ${
+//     mov > 0 ? 'deposited' : 'withdrew'
+//   } ${Math.abs(mov)}`;
+// });
+
+// console.log(movementsDescriptions);
+
+//* Method FILTER in practice
+
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
+
+// console.log(movements);
+// console.log(deposits);
+
+// const depositFor = [];
+// for (const mov of movements) {
+//   if (mov > 0) depositFor.push(mov);
+// }
+// console.log(depositFor);
+
+// const withdrawals = [];
+// for (const mov of movements) {
+//   if (mov < 0) withdrawals.push(mov);
+// }
+
+//* Method REDUCE in practice
+// Return a value
+
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+// const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(balance);
+
+// // forof reduce
+
+// let balance2 = 0;
+
+// for (const move of movements) {
+//   balance2 += move;
+// }
+
+// Maximun value using REDUCE
+
+// const maximunValue = movements.reduce((acc, cur) => {
+//   acc = acc > cur ? acc : cur;
+//   return acc;
+// }, movements[0]);
+
+// console.log(maximunValue);
