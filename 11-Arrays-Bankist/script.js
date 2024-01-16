@@ -283,4 +283,4 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   .map(mov => mov * eurToUsd)
 //   .reduce((acc, mov, i, arr) => acc + mov / arr.length, 0);
 
-// console.log(totalDepositsUSD);
+// console.log(totalDepositsUS);
