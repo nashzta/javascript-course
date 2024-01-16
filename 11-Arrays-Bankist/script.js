@@ -275,3 +275,12 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // }, movements[0]);
 
 // console.log(maximunValue);
+
+//* The magic of chainings methods
+// const eurToUsd = 1.1;
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   .map(mov => mov * eurToUsd)
+//   .reduce((acc, mov, i, arr) => acc + mov / arr.length, 0);
+
+// console.log(totalDepositsUSD);
