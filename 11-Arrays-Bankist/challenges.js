@@ -63,20 +63,20 @@ Test data:
 § Data 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK � */
 
-console.log('CHALLENGE 2');
-function calcAverageHumanAge(ages) {
-  const agesDogsToHuman = ages.map(dogAge => {
-    return dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4;
-  });
+// console.log('CHALLENGE 2');
+// function calcAverageHumanAge(ages) {
+//   const agesDogsToHuman = ages.map(dogAge => {
+//     return dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4;
+//   });
 
-  const adultDogs = agesDogsToHuman.filter(ageDog => ageDog >= 18);
+//   const adultDogs = agesDogsToHuman.filter(ageDog => ageDog >= 18);
 
-  const averageAdultDogs = adultDogs.reduce(
-    (acc, cur, i, arr) => acc + cur / arr.length,
-    0
-  );
+//   const averageAdultDogs = adultDogs.reduce(
+//     (acc, cur, i, arr) => acc + cur / arr.length,
+//     0
+//   );
 
-  console.log(averageAdultDogs);
-}
+//   console.log(averageAdultDogs);
+// }
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
