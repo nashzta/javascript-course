@@ -137,3 +137,13 @@ logo.classList.toggle('c');
 logo.classList.contains('c');
 
 logo.className = 'jonas';
+
+//* Implementing smooth scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+console.log(btnScrollTo);
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function () {
+  console.log('Hola');
+});
