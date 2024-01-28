@@ -80,17 +80,10 @@ document
 
 //* Styles, Attributes and Classes
 
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function () {
-    // message.remove();
-    message.parentElement.removeChild(message);
-  });
-
 // Styles
 
 message.style.backgroundColor = `#37383d`;
-message.style.width = '120%';
+message.style.width = '100%';
 
 console.log(message.style.color);
 console.log(message.style.backgroundColor);
@@ -136,7 +129,7 @@ logo.classList.remove('c', 'j');
 logo.classList.toggle('c');
 logo.classList.contains('c');
 
-logo.className = 'jonas';
+// logo.className = 'jonas';
 
 //* Implementing smooth scrolling
 
@@ -144,6 +137,35 @@ const btnScrollTo = document.querySelector('.btn--scroll-to');
 console.log(btnScrollTo);
 const section1 = document.querySelector('#section--1');
 
-btnScrollTo.addEventListener('click', function () {
-  console.log('Hola');
+btnScrollTo.addEventListener('click', function (e) {
+  const s1Coords = section1.getBoundingClientRect();
+
+  console.log(window.scrollX, window.scrollY);
+  console.log(s1Coords);
+
+  // window.scrollTo();
+  // window.scrollTo({
+  //   left: s1Coords.x + window.scrollX,
+  //   top: s1Coords.y + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+//* Types of Events and Events Handlers
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function () {
+  alert('addEventListener: Hola, entro el mouse ');
+};
+h1.addEventListener('mouseenter', alertH1);
+
+// h1.onmouseenter = function () {
+//   alert('onmousentre: Hola entro el mouse');
+// };
+
+setTimeout(() => {
+  h1.removeEventListener('mouseenter', alertH1);
+}, 3000);
