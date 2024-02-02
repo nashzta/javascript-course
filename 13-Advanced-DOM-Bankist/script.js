@@ -5,6 +5,7 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const nav = document.querySelector('.nav');
 
 ///////////////////////////////////////
 // Modal window
@@ -72,6 +73,53 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+//////////////////////////////////////////
+//* Building a Tabbed Component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) return;
+
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(t => t.classList.remove('operations__content--active'));
+
+  clicked.classList.add('operations__tab--active');
+  console.log(clicked.dataset.tab);
+  console.log(
+    document.querySelector(`operations__content--${clicked.dataset.tab}`)
+  );
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+//////////////////////////////////////////
+//* Menu fade animation - Passing Arguments to Event Handlers
+
+const handleOver = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) {
+        el.style.opacity = this;
+      }
+    });
+
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleOver.bind(0.5));
+
+nav.addEventListener('mouseout', handleOver.bind(1));
 //////////////////////////////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
@@ -239,4 +287,31 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 //   this.style.backgroundColor = randomColor();
 //   console.log(e.target);
 //   console.log(e.currentTarget);
+// });
+
+// //* DOM TRAVERSING
+// const h1 = document.querySelector('h1');
+
+// // Goind downwards child:
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// console.log(h1.firstElementChild);
+// console.log(h1.lastElementChild);
+
+// // Going upwards child:
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+
+// // h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// // h1.closest('h1').style.background = 'var(--gradient-secondary)';
+
+// // Going sideways: sibling
+
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// console.log(h1.parentElement.children);
+// [...h1.parentElement.children].forEach(el => {
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
 // });
