@@ -553,7 +553,7 @@ console.log(future.getTime()); */
 //* OPERATION WITH DATES
 
 /* const future = new Date(2037, 10, 19, 15, 23);
-console.log(+future);
+console.log('Future:', future);
 
 const calcDayPassed = (date1, date2) =>
   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
@@ -564,9 +564,9 @@ console.log(days1); */
 
 //* Internationalizing numbers (INTL)
 
-/* const num = 3884764.23;
-
-const options = {
+/*
+const num = 3884764.23;
+ const options = {
   style: 'currency',
   unit: 'celsius',
   currency: 'EUR',
