@@ -76,43 +76,47 @@ console.dir(x => x + 1);
 // const PersonCl = class {}
 
 // class declaration
-class PersonCl {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
-  }
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
 
-  calcAge() {
-    console.log(2037 - this.birthYear);
-  }
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
 
-  greet() {
-    console.log(`Hello ${this.firstName}`);
-  }
+//   greet() {
+//     console.log(`Hello ${this.firstName}`);
+//   }
 
-  get age() {
-    return 2037 - this.birthYear;
-  }
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
 
-  set fullName(name) {
-    console.log(name);
-    if (name.includes(' ')) this._fullName = name;
-    else alert(`${name} is not a full name!`);
-  }
+//   set fullName(name) {
+//     console.log(name);
+//     if (name.includes(' ')) this._fullName = name;
+//     else alert(`${name} is not a full name!`);
+//   }
 
-  get fullName() {
-    return this._fullName;
-  }
-}
+//   get fullName() {
+//     return this._fullName;
+//   }
 
-const priscila = new PersonCl('Priscila', 2003);
-console.log(priscila);
+//   static hey() {
+//     console.log('Hey there 👋');
+//   }
+// }
 
-priscila.calcAge();
+// const priscila = new PersonCl('Priscila Salv', 2003);
+// console.log(priscila);
 
-console.log(priscila.__proto__ === PersonCl.prototype);
+// priscila.calcAge();
 
-priscila.greet();
+// console.log(priscila.__proto__ === PersonCl.prototype);
+
+// priscila.greet();
 
 // 1. Classes are NOT hoisted
 // 2. Classes are first-class citizes
@@ -140,6 +144,108 @@ account.latest = 50;
 console.log(account.movements);
 console.log(account.latest);
 
-// Static Methods
+//* Static Methods
 
-Array.from(document.querySelector(''));
+Array.from(document.querySelector('h1'));
+
+PersonCl.hey();
+
+//* Object.create
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+//* Inheritance Between "Classes": Constructor Functions
+
+const Person2 = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person2.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person2.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// Linking prototypes
+Student.prototype = Object.create(Person2.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 2020, 'Computer Science');
+mike.introduce();
+mike.calcAge();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
+
+//* Inheritance Between "Classes: ES6 Classes"
+
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hello ${this.firstName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  static hey() {
+    console.log('Hey there 👋');
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+}
