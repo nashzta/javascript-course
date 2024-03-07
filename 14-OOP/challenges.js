@@ -52,43 +52,43 @@ methods, and with the getter and setter.
 Test data: 
 § Data car 1: 'Ford' going at 120 km/h */
 
-class CarCl {
-  constructor(make, speed) {
-    this.make = make;
-    this.speed = speed;
-  }
-  accelerate() {
-    this.speed += 10;
-    console.log(`${this.make} is goind at ${this.speed} km/h`);
-  }
-  brake() {
-    this.speed -= 5;
-    console.log(`${this.make} is goind at ${this.speed} km/h`);
-  }
+// class CarCl {
+//   constructor(make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+//   }
+//   accelerate() {
+//     this.speed += 10;
+//     console.log(`${this.make} is goind at ${this.speed} km/h`);
+//   }
+//   brake() {
+//     this.speed -= 5;
+//     console.log(`${this.make} is goind at ${this.speed} km/h`);
+//   }
 
-  get speedUs() {
-    return this.speed / 1.6;
-  }
+//   get speedUs() {
+//     return this.speed / 1.6;
+//   }
 
-  set speedUs(speed) {
-    this.speed = speed * 1.6;
-  }
-}
+//   set speedUs(speed) {
+//     this.speed = speed * 1.6;
+//   }
+// }
 
-const car1 = new CarCl('BMW', 120);
-const car2 = new CarCl('Mercedes', 95);
-const car3 = new CarCl('Ford', 120);
+// const car1 = new CarCl('BMW', 120);
+// const car2 = new CarCl('Mercedes', 95);
+// const car3 = new CarCl('Ford', 120);
 
-car1.accelerate();
-car1.accelerate();
-car1.accelerate();
+// car1.accelerate();
+// car1.accelerate();
+// car1.accelerate();
 
-car3.accelerate();
-car3.brake();
-console.log(car3.speedUs);
+// car3.accelerate();
+// car3.brake();
+// console.log(car3.speedUs);
 
-car3.speedUs = 180;
-console.log(car3.speed);
+// car3.speedUs = 180;
+// console.log(car3.speed);
 
 //* Coding Challenge 3
 
@@ -146,3 +146,63 @@ EV.prototype.accelerate = function () {
 const tesla = new EV('Tesla', 120, 23);
 console.log(tesla);
 tesla.accelerate();
+
+//* Coding challenge #4
+
+/* Your tasks: 
+1. Re-create Challenge #3, but this time using ES6 classes: create an 'EVCl' 
+child class of the 'CarCl' class 
+2. Make the 'charge' property private 
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery' 
+methods of this class, and also update the 'brake' method in the 'CarCl' class. Then experiment with chaining! 
+Test data: 
+§ Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%  */
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is goind at ${this.speed} km/h`);
+    return this;
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this;
+  }
+}
+
+class EVCl extends CarCl {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+
+const carCl = new EVCl('Rivian', 120, 23);
+console.log(carCl);
+
+carCl.accelerate().chargeBattery(100).brake().accelerate();

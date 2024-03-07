@@ -124,7 +124,7 @@ console.dir(x => x + 1);
 
 //* Setters and Getters
 
-const walter = new PersonCl('Walter White', 1923);
+// const walter = new PersonCl('Walter White', 1923);
 
 const account = {
   owner: 'Jean',
@@ -148,28 +148,28 @@ console.log(account.latest);
 
 Array.from(document.querySelector('h1'));
 
-PersonCl.hey();
+// PersonCl.hey();
 
 //* Object.create
 
-const PersonProto = {
-  calcAge() {
-    console.log(2037 - this.birthYear);
-  },
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
 
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
-};
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
 
-const steven = Object.create(PersonProto);
-console.log(steven);
-steven.name = 'Steven';
-steven.birthYear = 2002;
-steven.calcAge();
+// const steven = Object.create(PersonProto);
+// console.log(steven);
+// steven.name = 'Steven';
+// steven.birthYear = 2002;
+// steven.calcAge();
 
-console.log(steven.__proto__ === PersonProto);
+// console.log(steven.__proto__ === PersonProto);
 
 //* Inheritance Between "Classes": Constructor Functions
 
@@ -183,11 +183,12 @@ Person2.prototype.calcAge = function () {
 };
 
 const Student = function (firstName, birthYear, course) {
+  // 1. Linked constructors
   Person2.call(this, firstName, birthYear);
   this.course = course;
 };
 
-// Linking prototypes
+// 2. Linking prototypes
 Student.prototype = Object.create(Person2.prototype);
 
 Student.prototype.introduce = function () {
@@ -201,6 +202,7 @@ mike.calcAge();
 console.log(mike.__proto__);
 console.log(mike.__proto__.__proto__);
 
+// 3. Setting correct constructor object
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
 
@@ -244,8 +246,108 @@ class StudentCl extends PersonCl {
     super(fullName, birthYear);
     this.course = course;
   }
-
   introduce() {
     console.log(`My name is ${this.fullName} and I study ${this.course}`);
   }
+
+  calcAge() {
+    console.log(
+      `I'm ${
+        2037 - this.birthYear
+      } years old, but as a student I feel more like ${
+        2037 - this.birthYear + 10
+      } old`
+    );
+  }
 }
+
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+console.log(martha);
+
+//* Inheritance between "Classes": Object.create
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'Computer Science');
+jay.introduce();
+console.log(jay);
+
+//* Another class examples - Encapsulation Convention - Encapsulation Class Field
+
+class Account {
+  // Public field (instances)
+  locale = navigator.language;
+
+  // Private fields
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+
+    console.log(`Thanks for opoening a account, ${owner}`);
+  }
+  // Public methods
+  deposit(val) {
+    this.#movements.push(val);
+    return this;
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+    return this;
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+      return this;
+    }
+  }
+
+  getMovements() {
+    return this.#movements;
+  }
+
+  //Private methods
+
+  #approveLoan(val) {
+    return true;
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111);
+acc1.deposit(250);
+acc1.withdraw(-50);
+acc1.requestLoan(1000);
+console.log(acc1);
+
+//* Chaining Methods
+
+acc1.deposit(200).deposit(300).withdraw(20).requestLoan(200).withdraw(100);
+
+console.log(acc1.getMovements());
