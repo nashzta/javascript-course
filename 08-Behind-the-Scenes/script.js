@@ -36,44 +36,47 @@
 //* Hoisting in Practice
 
 /* variables */
-// var me = 'Jean';
-// let job = 'stevedore';
-// const year = 2000;
+var me = 'Jean';
+let job = 'stevedore';
+const year = 2000;
 
-// /* functions */
-// console.log(addDecl(2, 3));
+/* functions */
+console.log(addDecl(2, 3));
 // console.log(addExpr(2, 3));
 // console.log(addArrow(3, 4));
 
-// function addDecl(a, b) {
-//   return a + b;
-// }
+// function declaration have hoisting
+function addDecl(a, b) {
+  return a + b;
+}
 
-// const addExpr = function (a, b) {
-//   return a + b;
-// };
+// Error in console...
+//! Cannot access 'addExpr' before initialization
+const addExpr = function (a, b) {
+  return a + b;
+};
 
-// const addArrow = (a, b) => a + b;
+// Error in console...
+//! Cannot access 'addExpr' before initialization
+const addArrow = (a, b) => a + b;
 
-// // Example
+// Example
 
-// if (!numProducts) deleteShoppingCart();
+if (!numProducts) deleteShoppingCart();
 
-// var numProducts = 10;
+var numProducts = 10;
 
-// function deleteShoppingCart() {
-//   console.log('All products deleted!');
-// }
+function deleteShoppingCart() {
+  console.log('All products deleted!');
+}
 
-// var x = 1;
-// let y = 2;
-// const z = 3;
+var x = 1;
+let y = 2;
+const z = 3;
 
-// console.log(x === window.x);
-// console.log(y === window.y);
-// console.log(z === window.z);
-
-// console.log('Hola me llamo Jean Pierre');
+console.log(x === window.x);
+console.log(y === window.y);
+console.log(z === window.z);
 
 //* The This Keyword
 
@@ -186,42 +189,42 @@ addArrow(2, 4);
 
 //* Primitive vs Objects in Practice
 
-// Primitive Types
-let lastName = 'Williams';
-let oldLastName = lastName;
+// // Primitive Types
+// let lastName = 'Williams';
+// let oldLastName = lastName;
 
-lastName = 'Davis';
+// lastName = 'Davis';
 
-console.log(lastName, oldLastName);
+// console.log(lastName, oldLastName);
 
-// Reference Types
-const jessica = {
-  firstName: 'Jessica',
-  lastName: 'Williams',
-  age: 27,
-};
+// // Reference Types
+// const jessica = {
+//   firstName: 'Jessica',
+//   lastName: 'Williams',
+//   age: 27,
+// };
 
-const marriedJessica = jessica;
-marriedJessica.lastName = 'Davis';
-console.log('Before marriage: ', jessica);
-console.log('After marriage: ', marriedJessica);
+// const marriedJessica = jessica;
+// marriedJessica.lastName = 'Davis';
+// console.log('Before marriage: ', jessica);
+// console.log('After marriage: ', marriedJessica);
 
-//marriedJessica = {}
+// //marriedJessica = {}
 
-// Copying objects
-const jessica2 = {
-  firstName: 'Jessica',
-  lastName: 'Williams',
-  age: 27,
-  family: ['Alice', 'Bob'],
-};
+// // Copying objects
+// const jessica2 = {
+//   firstName: 'Jessica',
+//   lastName: 'Williams',
+//   age: 27,
+//   family: ['Alice', 'Bob'],
+// };
 
-const jessicaCopy = Object.assign({}, jessica2);
+// const jessicaCopy = Object.assign({}, jessica2);
 
-jessicaCopy.lastName = 'Davis';
+// jessicaCopy.lastName = 'Davis';
 
-jessicaCopy.family.push('Mary');
-jessicaCopy.family.push('John');
+// jessicaCopy.family.push('Mary');
+// jessicaCopy.family.push('John');
 
-console.log('Jessica2: ', jessica2);
-console.log('JessicaCopy: ', jessicaCopy);
+// console.log('Jessica2: ', jessica2);
+// console.log('JessicaCopy: ', jessicaCopy);
