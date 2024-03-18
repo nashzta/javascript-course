@@ -256,3 +256,119 @@ function whereIam() {
 }
 
 btn.addEventListener('click', whereIam);
+
+//* CONSUMING PROMISES WITH ASYNC/AWAIT
+
+const whereIam2 = async function () {
+  //* Error handling with try...catch
+  try {
+    const {
+      coords: { latitude: lat, longitude: lng },
+    } = await getPosition();
+
+    const geoRes = await fetch(
+      `https://geocode.xyz/${lat},${lng}?geoit=json&auth=${api_key}`
+    );
+    if (!geoRes.ok) throw new Error('Problem getting location data');
+
+    const { country, city } = await geoRes.json();
+
+    const countryRes = await fetch(
+      `https://restcountries.com/v3.1/name/${country}`
+    );
+
+    if (!countryRes.ok) throw new Error('Problem getting country');
+
+    const countryData = await countryRes.json();
+
+    renderCountry(countryData[0]);
+    countriesContainer.style.opacity = 1;
+    console.log('Finished');
+    //* Returning values from async functions
+    return `You are in ${city}, ${country}`;
+  } catch (err) {
+    console.error(err);
+    renderError(`Something wrong: ${err} 💥`);
+    throw new Error(err.message);
+  }
+};
+
+// console.log('1: Will get location');
+// whereIam2()
+//   .then(city => console.log(city))
+//   .catch(err => console.error(err.message));
+// console.log('2: Finished getting location');
+
+countriesContainer.style.opacity = 1;
+
+// (async function () {
+//   try {
+//     const city = await whereIam2();
+//     console.log(city);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// })();
+
+// const get3Countries = async function (c1, c2, c3) {
+//   try {
+//     //* Running promises in parallel
+//     const data = await Promise.all([
+//       getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+//       getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+//       getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+//     ]);
+
+//     console.log(data.map(d => d[0].capital));
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+// get3Countries('peru', 'argentina', 'brasil');
+
+//* Other promise combinators: race, allsettled and any
+
+// Promise.race -> return the result winner
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.com/v3.1/name/italy`),
+    getJSON(`https://restcountries.com/v3.1/name/peru`),
+    getJSON(`https://restcountries.com/v3.1/name/france`),
+  ]);
+
+  console.log(res[0]);
+})();
+
+const timeout = function (s) {
+  return new Promise(function (res, rej) {
+    setTimeout(() => {
+      rej(new Error('request took too long'));
+    }, s * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://restcountries.com/v3.1/name/tanzania`),
+  timeout(0.1),
+])
+  .then(res => console.log(res[0]))
+  .catch(err => console.error(err));
+
+// Promise.allSettled -> returns all results regardless of rejection
+Promise.allSettled([
+  Promise.resolve('Success 1'),
+  Promise.reject('Error'),
+  Promise.resolve('Success 2'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+
+// Promise.any -> returns the result ignoring the rejected ones
+Promise.allSettled([
+  Promise.resolve('Success 1'),
+  Promise.reject('Error'),
+  Promise.resolve('Success 2'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
